@@ -3,52 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chúc Mừng 8/3 - Huyền</title>
+    <title>Chúc Mừng 8/3</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             text-align: center;
             background-color: #ffe6f2;
             color: #d63384;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
-        .container {
-            margin-top: 50px;
-        }
+
         h1 {
             font-size: 3em;
-            animation: fadeIn 2s ease-in-out;
-        }
-        p {
-            font-size: 1.5em;
-        }
-        .heart {
-            font-size: 2em;
-            color: red;
-        }
-        .uploaded-image, .uploaded-video {
-            width: 300px;
             margin-top: 20px;
-            border-radius: 10px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        .message {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px auto;
+            max-width: 80%;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Video */
+        .video-container {
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        video {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hiệu ứng trái tim */
+        .heart {
+            position: fixed;
+            color: red;
+            font-size: 25px;
+            animation: fall linear infinite;
+            z-index: 999;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10%); opacity: 1; }
+            100% { transform: translateY(110vh); opacity: 0; }
+        }
+
+        /* Hiệu ứng chữ */
+        .text-message {
+            position: absolute;
+            font-size: 3em;
+            font-weight: bold;
+            color: #ff4d6d;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3), 0 0 10px white;
+            animation: fadeOut 5s linear forwards;
+            z-index: 1000;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(2); }
+        }
+
+        /* Hiệu ứng ảnh */
+        .image-popup {
+            position: absolute;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            animation: fadeOutImage 5s linear forwards;
+            z-index: 1000;
+        }
+
+        @keyframes fadeOutImage {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.5); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Chúc Mừng Ngày 8/3!</h1>
-        <p>Chúc Huyền luôn xinh đẹp, vui vẻ và hạnh phúc! <span class="heart">❤</span></p>
-        <img class="uploaded-image" src="huyen.jpg" alt="Ảnh Huyền">
-        <br>
-        <video class="uploaded-video" controls>
-            <source src="5995867038955_001.mp4" type="video/mp4">
 
-          
+    <h1>🌸 Chúc Mừng Ngày 8/3 🌸</h1>
+
+    <div class="message">
+        Chúc Em Ngày Càng Xinh Xắn, Đáng Iu, CuTe PhoMaiQue. 💕 <br>
+        Chúc Tềnh Yêu Sớm Sánh Bước Cùng Toiiii. 💑 <br>
+        Chúc Em Có Một Ngày Lễ Tràn Ngập Niềm Hạnh Phúc, Zui Zẻ. 🎉 <br>
+        Và Nhớ Là Luon Nho Den Toi Nhaaaa. iuuuuuuu 💖
+    </div>
+
+    <!-- Video chính -->
+    <div class="video-container">
+        <video controls>
+            <source src="copy_5877AF14-F1EF-45C0-AFAB-FCAC25959D2C.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ phát video.
         </video>
     </div>
+
+    <!-- Script tạo hiệu ứng -->
+    <script>
+        const images = [
+            "huyen1.jpg",
+            "huyen2.jpg",
+            "huyen3.jpg",
+            "huyen4.jpg",
+            "huyen.jpg"
+        ]; // Thay bằng tên ảnh thật của cô ấy
+
+        function createHeart() {
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = "-5%";
+                heart.style.fontSize = Math.random() * 40 + 10 + "px";
+                heart.style.animationDuration = Math.random() * 5 + 2 + "s";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => { heart.remove(); }, 5000);
+            }
+        }
+
+        setInterval(createHeart, 200);
+
+        function createText() {
+            const messages = ["Anh nhớ em ❤", "Đồ Đáng Iuu ❤", "Huyền CuTe Quá ❤","am in love with you"];
+            for (let i = 0; i < 4; i++) {
+                const text = document.createElement("div");
+                text.classList.add("text-message");
+                text.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+                text.style.left = Math.random() * 80 + 10 + "vw";
+                text.style.top = Math.random() * 80 + 10 + "vh";
+
+                document.body.appendChild(text);
+
+                setTimeout(() => { text.remove(); }, 5000);
+            }
+        }
+
+        setInterval(createText, 2000);
+
+        function createImage() {
+            const img = document.createElement("img");
+            img.classList.add("image-popup");
+            img.src = images[Math.floor(Math.random() * images.length)];
+            img.style.left = Math.random() * 80 + 10 + "vw";
+            img.style.top = Math.random() * 80 + 10 + "vh";
+            img.style.width = Math.random() * 150 + 100 + "px"; // 100px - 250px
+
+            document.body.appendChild(img);
+
+            setTimeout(() => { img.remove(); }, 5000);
+        }
+
+        setInterval(createImage, 500); // Mỗi giây hiện 1 ảnh mới
+    </script>
+
 </body>
 </html>
